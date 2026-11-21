@@ -9,10 +9,14 @@ on:
       source_url:
         description: "Lynx 源码包 zip URL（留空用默认）"
         required: false
-        default: "https://aka.doubaocdn.com/s/0d6jGhcrYC"
+        default: "https://aka.doubaocdn.com/s/j2XVcl3ceH"
 
 permissions:
   contents: write
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   build:
@@ -23,7 +27,7 @@ jobs:
 
       - name: Fetch source package
         run: |
-          URL="${{ inputs.source_url || 'https://aka.doubaocdn.com/s/0d6jGhcrYC' }}"
+          URL="${{ inputs.source_url || 'https://aka.doubaocdn.com/s/j2XVcl3ceH' }}"
           echo "source: $URL"
           curl -fL --retry 3 -o Lynx.zip "$URL"
           unzip -q Lynx.zip
@@ -33,7 +37,9 @@ jobs:
           XCODE=$(ls -d /Applications/Xcode*.app | sort -V | tail -1)
           echo "using $XCODE"
           sudo xcode-select -s "$XCODE/Contents/Developer"
+          xcode-select -p
           swift --version
+          find "$XCODE/Contents/Developer" -maxdepth 9 -name libSwiftUIMacros.dylib 2>/dev/null | head -3
 
       - name: Build Lynx.app
         run: cd Lynx && bash scripts/build_app.sh release 2>&1 | tee ../build.log
