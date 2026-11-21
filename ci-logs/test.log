@@ -1,23 +1,23 @@
 Fetching https://github.com/migueldeicaza/SwiftTerm.git
 [1/20862] Fetching swiftterm
-Fetched https://github.com/migueldeicaza/SwiftTerm.git from cache (3.70s)
+Fetched https://github.com/migueldeicaza/SwiftTerm.git from cache (3.83s)
 Fetching https://github.com/swiftlang/swift-subprocess
 [1/5115] Fetching swift-subprocess
-Fetched https://github.com/swiftlang/swift-subprocess from cache (1.08s)
+Fetched https://github.com/swiftlang/swift-subprocess from cache (0.73s)
 Fetching https://github.com/apple/swift-system
 Fetching https://github.com/apple/swift-argument-parser
-[1/7619] Fetching swift-system
-[4040/27061] Fetching swift-system, swift-argument-parser
-Fetched https://github.com/apple/swift-system from cache (1.39s)
-Fetched https://github.com/apple/swift-argument-parser from cache (1.39s)
+[1/19442] Fetching swift-argument-parser
+[2/27061] Fetching swift-argument-parser, swift-system
+Fetched https://github.com/apple/swift-system from cache (1.10s)
+Fetched https://github.com/apple/swift-argument-parser from cache (1.11s)
 Computing version for https://github.com/apple/swift-system
-Computed https://github.com/apple/swift-system at 1.9.0 (1.66s)
+Computed https://github.com/apple/swift-system at 1.9.0 (1.86s)
 Computing version for https://github.com/apple/swift-argument-parser
-Computed https://github.com/apple/swift-argument-parser at 1.8.2 (0.24s)
-Creating working copy for https://github.com/apple/swift-system
-Working copy of https://github.com/apple/swift-system resolved at 1.9.0
+Computed https://github.com/apple/swift-argument-parser at 1.8.2 (0.36s)
 Creating working copy for https://github.com/apple/swift-argument-parser
 Working copy of https://github.com/apple/swift-argument-parser resolved at 1.8.2
+Creating working copy for https://github.com/apple/swift-system
+Working copy of https://github.com/apple/swift-system resolved at 1.9.0
 Creating working copy for https://github.com/migueldeicaza/SwiftTerm.git
 Working copy of https://github.com/migueldeicaza/SwiftTerm.git resolved at 8840e3596739adfe9599c0e7fff89f4fa88bedcf
 Creating working copy for https://github.com/swiftlang/swift-subprocess
@@ -27,90 +27,95 @@ Working copy of https://github.com/swiftlang/swift-subprocess resolved at 426790
 Building for debugging...
 [2/19] /Users/runner/work/lynx-app/lynx-app/Lynx/.build/arm64-apple-macosx/debug/LynxPackageTests.derived/runner.swift
 [3/19] Write sources
-[9/19] Write Lynx-entitlement.plist
+[5/19] Write Lynx-entitlement.plist
 [11/19] Write swift-version-1977FEB4D2752686.txt
 [12/26] Compiling CSystem shims.c
 [13/53] Compiling _SubprocessCShims process_shims.c
-[15/53] Compiling SystemPackage FileHelpers.swift
-[16/53] Compiling SystemPackage FileOperations.swift
-[17/53] Compiling SystemPackage FilePath.swift
-[18/56] Emitting module LynxCore
-[19/56] Compiling SystemPackage Errno.swift
-[20/56] Compiling SystemPackage ErrnoWindows.swift
-[21/56] Compiling SystemPackage FileDescriptor.swift
-[22/56] Compiling LynxCore SSHConfigAndPrompts.swift
-[23/56] Compiling LynxCore TextParsers.swift
-[24/56] Compiling LynxCore Utilities.swift
-[25/61] Compiling LynxCoreTests ExecRunnerTests.swift
-[26/61] Compiling LynxCoreTests LiveScriptTests.swift
-[27/61] Compiling LynxCoreTests CommandBuilderTests.swift
-[28/61] Compiling LynxCoreTests ConfigPromptTests.swift
-[34/61] Compiling SystemPackage FilePathString.swift
-[35/61] Compiling SystemPackage FilePathSyntax.swift
-[36/61] Compiling SystemPackage FilePathTemp.swift
-[37/61] Compiling SystemPackage FilePathTempPosix.swift
-[38/61] Emitting module SystemPackage
-[39/61] Compiling SystemPackage FilePathTempWindows.swift
-[40/61] Compiling SystemPackage FilePathWindows.swift
-[41/61] Compiling SystemPackage FilePermissions.swift
-[42/61] Compiling SystemPackage FileFlags.swift
-[43/61] Compiling SystemPackage FileMode.swift
-[44/61] Compiling SystemPackage FileType.swift
-[45/61] Compiling SystemPackage Identifiers.swift
-[46/61] Compiling SystemPackage MountFlags.swift
-[47/61] Compiling SystemPackage Stat.swift
-[48/61] Compiling SystemPackage StatFS.swift
-[49/61] Compiling SystemPackage Backcompat.swift
-[50/61] Compiling SystemPackage CInterop.swift
-[51/61] Compiling SystemPackage Constants.swift
-[52/73] Compiling SystemPackage Exports.swift
-[53/73] Compiling SystemPackage Mocking.swift
-[54/73] Compiling SystemPackage RawBuffer.swift
-[55/73] Compiling SystemPackage Syscalls.swift
-[56/73] Compiling SystemPackage WindowsSyscallAdapters.swift
-[57/73] Compiling SystemPackage MachPort.swift
-[58/73] Compiling SystemPackage PlatformString.swift
-[59/73] Compiling SystemPackage SystemString.swift
-[60/73] Compiling SystemPackage Util+StringArray.swift
-[61/73] Compiling SystemPackage Util.swift
-[62/73] Compiling SystemPackage UtilConsumers.swift
-[63/73] Compiling SystemPackage WinSDK+Overlay.swift
-[64/90] Emitting module Subprocess
-[65/97] Compiling Subprocess AsyncIO+Windows.swift
-[66/97] Compiling Subprocess Input.swift
-[67/97] Compiling Subprocess Output.swift
-[68/97] Compiling Subprocess Subprocess+BSD.swift
-[69/97] Compiling Subprocess Subprocess+Darwin.swift
-[70/97] Compiling Subprocess Subprocess+Linux.swift
-[71/97] Compiling Subprocess Subprocess+Unix.swift
-[72/97] Compiling Subprocess Subprocess+Windows.swift
-[73/97] Compiling Subprocess Result.swift
-[74/97] Compiling Subprocess Span+Subprocess.swift
-[75/97] Compiling Subprocess Input+Foundation.swift
-[76/97] Compiling Subprocess Output+Foundation.swift
-[77/97] Compiling Subprocess Span+SubprocessFoundation.swift
-[78/97] Compiling Subprocess Teardown.swift
-[79/97] Compiling Subprocess Thread.swift
-[80/97] Compiling Subprocess API.swift
-[81/97] Compiling Subprocess AsyncBufferSequence.swift
-[82/97] Compiling Subprocess Buffer.swift
-[83/97] Compiling Subprocess Configuration.swift
-[84/97] Compiling Subprocess Error.swift
-[85/97] Compiling Subprocess Execution.swift
-[86/97] Compiling Subprocess AsyncIO+Dispatch.swift
-[87/97] Compiling Subprocess AsyncIO+Linux.swift
+[15/53] Emitting module SystemPackage
+[16/65] Compiling SystemPackage FileHelpers.swift
+[17/65] Compiling SystemPackage FileOperations.swift
+[18/65] Compiling SystemPackage FilePath.swift
+[19/68] Emitting module LynxCore
+[20/68] Compiling SystemPackage Errno.swift
+[21/68] Compiling SystemPackage ErrnoWindows.swift
+[22/68] Compiling SystemPackage FileDescriptor.swift
+[23/68] Compiling LynxCore SSHConfigAndPrompts.swift
+[24/68] Compiling LynxCore TextParsers.swift
+[25/68] Compiling LynxCore Utilities.swift
+[26/73] Compiling SystemPackage Exports.swift
+[27/73] Compiling SystemPackage Mocking.swift
+[28/73] Compiling SystemPackage RawBuffer.swift
+[29/73] Compiling SystemPackage Syscalls.swift
+[30/73] Compiling SystemPackage WindowsSyscallAdapters.swift
+[31/73] Compiling SystemPackage MachPort.swift
+[32/73] Compiling SystemPackage PlatformString.swift
+[33/73] Compiling SystemPackage SystemString.swift
+[34/73] Compiling SystemPackage Util+StringArray.swift
+[35/73] Compiling SystemPackage Util.swift
+[36/73] Compiling SystemPackage UtilConsumers.swift
+[37/73] Compiling SystemPackage WinSDK+Overlay.swift
+[38/73] Compiling LynxCoreTests ExecRunnerTests.swift
+[39/73] Compiling LynxCoreTests LiveScriptTests.swift
+[40/73] Compiling LynxCoreTests CommandBuilderTests.swift
+[41/73] Compiling LynxCoreTests ConfigPromptTests.swift
+[47/73] Compiling SystemPackage FilePathString.swift
+[48/73] Compiling SystemPackage FilePathSyntax.swift
+[49/73] Compiling SystemPackage FilePathTemp.swift
+[50/73] Compiling SystemPackage FilePathTempPosix.swift
+[51/73] Compiling SystemPackage FilePathTempWindows.swift
+[52/73] Compiling SystemPackage FilePathWindows.swift
+[53/73] Compiling SystemPackage FilePermissions.swift
+[54/73] Compiling SystemPackage FileFlags.swift
+[55/73] Compiling SystemPackage FileMode.swift
+[56/73] Compiling SystemPackage FileType.swift
+[57/73] Compiling SystemPackage Identifiers.swift
+[58/73] Compiling SystemPackage MountFlags.swift
+[59/73] Compiling SystemPackage Stat.swift
+[60/73] Compiling SystemPackage StatFS.swift
+[61/73] Compiling SystemPackage Backcompat.swift
+[62/73] Compiling SystemPackage CInterop.swift
+[63/73] Compiling SystemPackage Constants.swift
+[64/90] Compiling Subprocess AsyncIO+Windows.swift
+[65/90] Compiling Subprocess Input.swift
+[66/90] Compiling Subprocess Output.swift
+[67/90] Compiling Subprocess Subprocess+BSD.swift
+[68/90] Compiling Subprocess Subprocess+Darwin.swift
+[69/90] Compiling Subprocess Subprocess+Linux.swift
+[70/90] Compiling Subprocess Subprocess+Unix.swift
+[71/90] Compiling Subprocess Subprocess+Windows.swift
+[72/97] Emitting module Subprocess
+[73/97] Compiling Subprocess API.swift
+[74/97] Compiling Subprocess AsyncBufferSequence.swift
+[75/97] Compiling Subprocess Buffer.swift
+[76/97] Compiling Subprocess Configuration.swift
+[77/97] Compiling Subprocess Error.swift
+[78/97] Compiling Subprocess Execution.swift
+[79/97] Compiling Subprocess AsyncIO+Dispatch.swift
+[80/97] Compiling Subprocess AsyncIO+Linux.swift
+[81/97] Compiling Subprocess Result.swift
+[82/97] Compiling Subprocess Span+Subprocess.swift
+[83/97] Compiling Subprocess Input+Foundation.swift
+[84/97] Compiling Subprocess Output+Foundation.swift
+[85/97] Compiling Subprocess Span+SubprocessFoundation.swift
+[86/97] Compiling Subprocess Teardown.swift
+[87/97] Compiling Subprocess Thread.swift
 [88/128] Compiling SwiftTerm Extensions.swift
 [89/128] Compiling SwiftTerm TerminalViewDelegate.swift
-[90/130] Emitting module LynxCoreTests
-[91/130] Compiling SwiftTerm AppleTerminalView.swift
-[92/130] Compiling SwiftTerm CaretView.swift
+[90/128] Compiling SwiftTerm AppleTerminalView.swift
+[91/128] Compiling SwiftTerm CaretView.swift
+[92/128] Emitting module LynxCoreTests
 [93/130] Compiling LynxCoreTests MetricsTests.swift
 [94/130] Compiling LynxCoreTests TextParserTests.swift
-[95/132] Emitting module LynxPackageTests
-[96/132] Compiling LynxPackageTests runner.swift
+[95/132] Compiling LynxPackageTests runner.swift
+[96/132] Emitting module LynxPackageTests
 [96/132] Write Objects.LinkFileList
 [97/132] Linking LynxPackageTests
 [99/132] Emitting module SwiftTerm
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+1 | #import "process_shims.h"
+  |         `- note: in file included from <module-includes>:1:
+2 | #import "target_conditionals.h"
+3 | 
 [100/146] Compiling SwiftTerm SixelDcsHandler.swift
 [101/146] Compiling SwiftTerm Terminal.swift
 [102/146] Compiling SwiftTerm TerminalOptions.swift
@@ -140,90 +145,15 @@ Building for debugging...
 [126/146] Compiling SwiftTerm Pty.swift
 [127/146] Compiling SwiftTerm SearchService.swift
 [128/146] Compiling SwiftTerm SelectionService.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [135/146] Compiling SwiftTerm BufferSet.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [136/146] Compiling SwiftTerm CharData.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [137/146] Compiling SwiftTerm CharSets.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [138/146] Compiling SwiftTerm CircularList.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [139/146] Compiling SwiftTerm Colors.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [140/146] Compiling SwiftTerm EscapeSequenceParser.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [141/146] Compiling SwiftTerm EscapeSequences.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [142/146] Compiling SwiftTerm ExtensionsTerminal.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [143/146] Compiling SwiftTerm File.swift
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-1 | #import "process_shims.h"
-  |         `- note: in file included from <module-includes>:1:
-2 | #import "target_conditionals.h"
-3 | 
 [144/168] Compiling Lynx LockView.swift
 [145/168] Compiling Lynx LynxApp.swift
 [146/168] Compiling Lynx MenuBarController.swift
