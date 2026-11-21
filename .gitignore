@@ -1,0 +1,17 @@
+# SwiftPM / Xcode build products
+.build/
+build/
+DerivedData/
+.swiftpm/
+*.xcresult
+
+# macOS
+.DS_Store
+
+# 图标原图（仓库以 base64 sidecar 携带 AppIcon-mono-1024.png；本地原图勿提交）
+Resources/AppIcon.png
+Resources/AppIcon-mono.png
+
+# Misc
+*.xcuserstate
+xcuserdata/
