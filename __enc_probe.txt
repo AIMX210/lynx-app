@@ -1,0 +1,9 @@
+MARK1 \(paren)
+MARK2 \/slash
+MARK3 \.dot
+MARK4 \one
+MARK5 \two
+MARK6 lit-n \n
+MARK7 lit-t \t
+MARK8 double \\
+MARK9 plain abc
