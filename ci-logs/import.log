@@ -1,3 +1,143 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Error><Code>BlobNotFound</Code><Message>The specified blob does not exist.
-RequestId:18ad0d59-401e-0021-10db-79c80b000000
-Time:2026-11-21T17:11:14.0062790Z</Message></Error>
+== curl ==
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0           00:01              0100      2   0      2   0      0      0      0           00:02              0100      2   0      2   0      0      0      0           00:02              0100      2   0      2   0      0      0      0           00:02              0
+  0      0   0      0   0      0      0      0           00:02              0  0      0   0      0   0      0      0      0           00:03              0  4 360.8k   4  15052   0      0   3313      0   01:51   00:04   01:47   7285100 360.8k 100 360.8k   0      0  68396      0   00:05   00:05           7285100 360.8k 100 360.8k   0      0  68395      0   00:05   00:05           7285100 360.8k 100 360.8k   0      0  68395      0   00:05   00:05           7285
+-rw-r--r-- 1 runner runner 369517 Nov 21 17:12 src.zip
+== unzip ==
+src
+src/.github
+src/.gitignore
+src/Package.swift
+src/README.md
+src/README.repo.md
+src/Resources
+src/Sources
+src/Tests
+src/Tools
+src/scripts
+== copy ==
+[main 9928a25] feat: Lynx full source in standard SwiftPM layout
+ 119 files changed, 18440 insertions(+), 1294 deletions(-)
+ delete mode 100644 .github/workflows/import.yml
+ create mode 100644 README.repo.md
+ create mode 100644 Resources/AppIcon.png
+ create mode 100644 Sources/Lynx/AppState.swift
+ create mode 100644 Sources/Lynx/AuthSheet.swift
+ create mode 100644 Sources/Lynx/Components.swift
+ create mode 100644 Sources/Lynx/ConnectionPool.swift
+ create mode 100644 Sources/Lynx/ContentView.swift
+ create mode 100644 Sources/Lynx/DashboardView.swift
+ create mode 100644 Sources/Lynx/DockerView.swift
+ create mode 100644 Sources/Lynx/FilesView.swift
+ create mode 100644 Sources/Lynx/ForwardsView.swift
+ create mode 100644 Sources/Lynx/Keychain.swift
+ create mode 100644 Sources/Lynx/KeysView.swift
+ create mode 100644 Sources/Lynx/LockView.swift
+ create mode 100644 Sources/Lynx/LynxApp.swift
+ create mode 100644 Sources/Lynx/MenuBarController.swift
+ create mode 100644 Sources/Lynx/MonitorService.swift
+ create mode 100644 Sources/Lynx/OverviewView.swift
+ create mode 100644 Sources/Lynx/ProcessesView.swift
+ create mode 100644 Sources/Lynx/RemoteServices.swift
+ create mode 100644 Sources/Lynx/SSHConfigImportSheet.swift
+ create mode 100644 Sources/Lynx/SSHConnection.swift
+ create mode 100644 Sources/Lynx/ServerDetailView.swift
+ create mode 100644 Sources/Lynx/ServerEditorSheet.swift
+ create mode 100644 Sources/Lynx/Settings.swift
+ create mode 100644 Sources/Lynx/SettingsView.swift
+ create mode 100644 Sources/Lynx/SidebarView.swift
+ create mode 100644 Sources/Lynx/SnippetsView.swift
+ create mode 100644 Sources/Lynx/Store.swift
+ create mode 100644 Sources/Lynx/TerminalInspector.swift
+ create mode 100644 Sources/Lynx/TerminalPane.swift
+ create mode 100644 Sources/Lynx/TerminalSession.swift
+ create mode 100644 Sources/Lynx/TerminalThemes.swift
+ create mode 100644 Sources/LynxCore/RemoteScripts.swift
+ create mode 100644 Tests/LynxCoreTests/ExecRunnerTests.swift
+ create mode 100644 Tests/LynxCoreTests/LiveScriptTests.swift
+ create mode 100644 Tests/LynxCoreTests/MetricsTests.swift
+ create mode 100644 Tools/UIShim/AppKitShim.swift
+ create mode 100644 Tools/UIShim/LocalAuthenticationShim.swift
+ create mode 100644 Tools/UIShim/ObjectiveCShim.swift
+ create mode 100644 Tools/UIShim/SecurityShim.swift
+ create mode 100644 Tools/UIShim/SwiftTermShim.swift
+ create mode 100644 Tools/UIShim/SwiftUIShim.swift
+ create mode 100644 Tools/UIShim/UTTypeShim.swift
+ delete mode 100644 ci-logs/build.log
+ delete mode 100644 ci-logs/import.log
+ delete mode 100644 ci-logs/job.log
+ delete mode 100644 ci-logs/status.json
+ delete mode 100644 ci-logs/test.log
+ create mode 100644 import-step.log
+ create mode 100755 scripts/build_app.sh
+ create mode 100755 scripts/typecheck_ui.sh
+ create mode 100644 src.zip
+ create mode 100644 src/.github/workflows/build.yml
+ create mode 100644 src/.gitignore
+ create mode 100644 src/Package.swift
+ create mode 100644 src/README.md
+ create mode 100644 src/README.repo.md
+ create mode 100644 src/Resources/AppIcon.png
+ create mode 100644 src/Resources/Info.plist
+ create mode 100644 src/Sources/Lynx/AppState.swift
+ create mode 100644 src/Sources/Lynx/AuthSheet.swift
+ create mode 100644 src/Sources/Lynx/Components.swift
+ create mode 100644 src/Sources/Lynx/ConnectionPool.swift
+ create mode 100644 src/Sources/Lynx/ContentView.swift
+ create mode 100644 src/Sources/Lynx/DashboardView.swift
+ create mode 100644 src/Sources/Lynx/DockerView.swift
+ create mode 100644 src/Sources/Lynx/FilesView.swift
+ create mode 100644 src/Sources/Lynx/ForwardsView.swift
+ create mode 100644 src/Sources/Lynx/Keychain.swift
+ create mode 100644 src/Sources/Lynx/KeysView.swift
+ create mode 100644 src/Sources/Lynx/LockView.swift
+ create mode 100644 src/Sources/Lynx/LynxApp.swift
+ create mode 100644 src/Sources/Lynx/MenuBarController.swift
+ create mode 100644 src/Sources/Lynx/MonitorService.swift
+ create mode 100644 src/Sources/Lynx/OverviewView.swift
+ create mode 100644 src/Sources/Lynx/ProcessesView.swift
+ create mode 100644 src/Sources/Lynx/RemoteServices.swift
+ create mode 100644 src/Sources/Lynx/SSHConfigImportSheet.swift
+ create mode 100644 src/Sources/Lynx/SSHConnection.swift
+ create mode 100644 src/Sources/Lynx/ServerDetailView.swift
+ create mode 100644 src/Sources/Lynx/ServerEditorSheet.swift
+ create mode 100644 src/Sources/Lynx/Settings.swift
+ create mode 100644 src/Sources/Lynx/SettingsView.swift
+ create mode 100644 src/Sources/Lynx/SidebarView.swift
+ create mode 100644 src/Sources/Lynx/SnippetsView.swift
+ create mode 100644 src/Sources/Lynx/Store.swift
+ create mode 100644 src/Sources/Lynx/TerminalInspector.swift
+ create mode 100644 src/Sources/Lynx/TerminalPane.swift
+ create mode 100644 src/Sources/Lynx/TerminalSession.swift
+ create mode 100644 src/Sources/Lynx/TerminalThemes.swift
+ create mode 100644 src/Sources/LynxCore/ExecRunner.swift
+ create mode 100644 src/Sources/LynxCore/FileStore.swift
+ create mode 100644 src/Sources/LynxCore/MetricsParser.swift
+ create mode 100644 src/Sources/LynxCore/Models.swift
+ create mode 100644 src/Sources/LynxCore/RemoteScripts.swift
+ create mode 100644 src/Sources/LynxCore/SSHCommandBuilder.swift
+ create mode 100644 src/Sources/LynxCore/SSHConfigAndPrompts.swift
+ create mode 100644 src/Sources/LynxCore/TextParsers.swift
+ create mode 100644 src/Sources/LynxCore/Utilities.swift
+ create mode 100644 src/Tests/LynxCoreTests/CommandBuilderTests.swift
+ create mode 100644 src/Tests/LynxCoreTests/ConfigPromptTests.swift
+ create mode 100644 src/Tests/LynxCoreTests/ExecRunnerTests.swift
+ create mode 100644 src/Tests/LynxCoreTests/LiveScriptTests.swift
+ create mode 100644 src/Tests/LynxCoreTests/MetricsTests.swift
+ create mode 100644 src/Tests/LynxCoreTests/TextParserTests.swift
+ create mode 100644 src/Tools/UIShim/AppKitShim.swift
+ create mode 100644 src/Tools/UIShim/LocalAuthenticationShim.swift
+ create mode 100644 src/Tools/UIShim/ObjectiveCShim.swift
+ create mode 100644 src/Tools/UIShim/SecurityShim.swift
+ create mode 100644 src/Tools/UIShim/SwiftTermShim.swift
+ create mode 100644 src/Tools/UIShim/SwiftUIShim.swift
+ create mode 100644 src/Tools/UIShim/UTTypeShim.swift
+ create mode 100755 src/scripts/build_app.sh
+ create mode 100755 src/scripts/typecheck_ui.sh
+== push ==
+To https://github.com/AIMX210/lynx-app
+ ! [remote rejected] HEAD -> main (refusing to allow a GitHub App to create or update workflow `.github/workflows/build.yml` without `workflows` permission)
+error: failed to push some refs to 'https://github.com/AIMX210/lynx-app'
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
