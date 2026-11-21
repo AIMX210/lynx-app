@@ -14,6 +14,7 @@ public struct PersistedData: Codable, Sendable {
         self.servers = servers
         self.groups = groups
         self.snippets = snippets
+        self.rules = rules
     }
 }
 
