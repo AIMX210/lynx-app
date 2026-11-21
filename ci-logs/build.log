@@ -1,4 +1,123 @@
-error: 未找到 libSwiftUIMacros.dylib（SwiftUI 宏插件）。
-       Command Line Tools 不含该插件，需安装完整 Xcode 后执行：
-       sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-       然后 rm -rf .build 并重跑本脚本。
+==> SwiftUIMacros plugin: /Applications/Xcode_26.3.0.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/usr/lib/swift/host/plugins
+==> swift build -c release
+Fetching https://github.com/migueldeicaza/SwiftTerm.git
+[1/20862] Fetching swiftterm
+Fetched https://github.com/migueldeicaza/SwiftTerm.git from cache (3.58s)
+Fetching https://github.com/swiftlang/swift-subprocess
+[1/5115] Fetching swift-subprocess
+Fetched https://github.com/swiftlang/swift-subprocess from cache (0.68s)
+Fetching https://github.com/apple/swift-argument-parser
+Fetching https://github.com/apple/swift-system
+[1/7619] Fetching swift-system
+[916/27061] Fetching swift-system, swift-argument-parser
+Fetched https://github.com/apple/swift-system from cache (0.76s)
+[6222/19442] Fetching swift-argument-parser
+Fetched https://github.com/apple/swift-argument-parser from cache (1.03s)
+Computing version for https://github.com/apple/swift-system
+Computed https://github.com/apple/swift-system at 1.9.0 (1.43s)
+Computing version for https://github.com/apple/swift-argument-parser
+Computed https://github.com/apple/swift-argument-parser at 1.8.2 (0.30s)
+Creating working copy for https://github.com/swiftlang/swift-subprocess
+Working copy of https://github.com/swiftlang/swift-subprocess resolved at 426790f3f24afa60b418450da0afaa20a8b3bdd4
+Creating working copy for https://github.com/migueldeicaza/SwiftTerm.git
+Working copy of https://github.com/migueldeicaza/SwiftTerm.git resolved at 8840e3596739adfe9599c0e7fff89f4fa88bedcf
+Creating working copy for https://github.com/apple/swift-system
+Working copy of https://github.com/apple/swift-system resolved at 1.9.0
+Creating working copy for https://github.com/apple/swift-argument-parser
+Working copy of https://github.com/apple/swift-argument-parser resolved at 1.8.2
+[1/1] Compiling plugin GenerateManual
+[2/2] Compiling plugin GenerateDoccReference
+Building for production...
+[2/12] Write sources
+[7/12] Write swift-version-1977FEB4D2752686.txt
+[8/13] Compiling CSystem shims.c
+[9/14] Compiling _SubprocessCShims process_shims.c
+[11/14] Compiling LynxCore ExecRunner.swift
+[12/14] Compiling SystemPackage Errno.swift
+[13/15] Compiling Subprocess API.swift
+[14/16] Compiling SwiftTerm AppleTerminalView.swift
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+1 | #import "process_shims.h"
+  |         `- note: in file included from <module-includes>:1:
+2 | #import "target_conditionals.h"
+3 | 
+[15/17] Compiling Lynx AppState.swift
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+1 | #import "process_shims.h"
+  |         `- note: in file included from <module-includes>:1:
+2 | #import "target_conditionals.h"
+3 | 
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/.build/checkouts/swift-subprocess/Sources/_SubprocessCShims/include/process_shims.h:44:5: warning: pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)
+ 42 | 
+ 43 | int _subprocess_pthread_create(
+ 44 |     pthread_t * _Nonnull ptr,
+    |     |- warning: pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)
+    |     |- note: insert '_Nullable' if the pointer may be null
+    |     `- note: insert '_Nonnull' if the pointer should never be null
+ 45 |     pthread_attr_t const * _Nullable attr,
+ 46 |     void * _Nullable (* _Nonnull start)(void * _Nullable),
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/Sources/Lynx/AuthSheet.swift:55:30: error: extraneous argument label 'perform:' in call
+ 53 |                     .textFieldStyle(.roundedBorder)
+ 54 |                     .frame(maxWidth: 300)
+ 55 |                     .onSubmit(perform: submit)
+    |                              `- error: extraneous argument label 'perform:' in call
+ 56 |                 Toggle("保存到系统 Keychain", isOn: $remember)
+ 57 |                     .font(.caption)
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/Sources/Lynx/DockerView.swift:72:54: warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+ 70 |                     Button {
+ 71 |                         run(container.isRunning ? "停止" : "启动") { conn in
+ 72 |                             try await RemoteServices.dockerAction(conn, action: container.isRunning ? "stop" : "start", container: container.id)
+    |                                                      `- warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+ 73 |                         }
+ 74 |                     } label: {
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/Sources/Lynx/DockerView.swift:80:74: warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+ 78 |                     .disabled(busy != nil)
+ 79 |                     Button {
+ 80 |                         run("重启") { conn in try await RemoteServices.dockerAction(conn, action: "restart", container: container.id) }
+    |                                                                      `- warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+ 81 |                     } label: {
+ 82 |                         Image(systemName: "arrow.clockwise.circle")
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/Sources/Lynx/DockerView.swift:103:72: warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+101 |         .confirmationDialog("删除容器？", isPresented: removePresented, presenting: removeTarget) { container in
+102 |             Button("删除 \(container.name)", role: .destructive) {
+103 |                 run("删除容器") { conn in try await RemoteServices.dockerAction(conn, action: "rm -f", container: container.id) }
+    |                                                                `- warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+104 |                 removeTarget = nil
+105 |             }
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/Sources/Lynx/DockerView.swift:111:72: warning: result of call to 'dockerRemoveImage(_:image:)' is unused [#no-usage]
+109 |         .confirmationDialog("删除镜像？", isPresented: removeImagePresented, presenting: removeImageTarget) { image in
+110 |             Button("删除 \(image.tag)", role: .destructive) {
+111 |                 run("删除镜像") { conn in try await RemoteServices.dockerRemoveImage(conn, image: image.id) }
+    |                                                                `- warning: result of call to 'dockerRemoveImage(_:image:)' is unused [#no-usage]
+112 |                 removeImageTarget = nil
+113 |             }
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/Sources/Lynx/DockerView.swift:205:81: warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+203 |     private func containerMenu(_ c: DockerContainer) -> some View {
+204 |         if c.isRunning {
+205 |             Button("停止") { run("停止") { conn in try await RemoteServices.dockerAction(conn, action: "stop", container: c.id) } }
+    |                                                                         `- warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+206 |             Button("重启") { run("重启") { conn in try await RemoteServices.dockerAction(conn, action: "restart", container: c.id) } }
+207 |         } else {
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/Sources/Lynx/DockerView.swift:206:81: warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+204 |         if c.isRunning {
+205 |             Button("停止") { run("停止") { conn in try await RemoteServices.dockerAction(conn, action: "stop", container: c.id) } }
+206 |             Button("重启") { run("重启") { conn in try await RemoteServices.dockerAction(conn, action: "restart", container: c.id) } }
+    |                                                                         `- warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+207 |         } else {
+208 |             Button("启动") { run("启动") { conn in try await RemoteServices.dockerAction(conn, action: "start", container: c.id) } }
+
+/Users/runner/work/lynx-app/lynx-app/Lynx/Sources/Lynx/DockerView.swift:208:81: warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+206 |             Button("重启") { run("重启") { conn in try await RemoteServices.dockerAction(conn, action: "restart", container: c.id) } }
+207 |         } else {
+208 |             Button("启动") { run("启动") { conn in try await RemoteServices.dockerAction(conn, action: "start", container: c.id) } }
+    |                                                                         `- warning: result of call to 'dockerAction(_:action:container:)' is unused [#no-usage]
+209 |         }
+210 |         Button("查看日志") { logsTarget = c }
