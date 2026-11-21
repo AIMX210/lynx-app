@@ -22,19 +22,21 @@ jobs:
 
       - name: Import full source tree in one commit
         run: |
-          echo "== curl =="
-          curl -fL --retry 3 -o src.zip https://aka.doubaocdn.com/s/LolegOC3b4
-          ls -la src.zip
-          echo "== unzip =="
-          mkdir src && unzip -q src.zip -d src
-          find src -maxdepth 1 | sort
-          echo "== copy =="
-          (cd src && tar cf - --exclude=.git .) | tar xf - -C "$GITHUB_WORKSPACE"
-          git rm -rq --ignore-unmatch ci-logs ci-artifact .github/workflows/import.yml
-          git add -A
-          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "feat: Lynx full source in standard SwiftPM layout"
-          echo "== push =="
-          git push origin HEAD:main || (git pull --rebase origin main && git push origin HEAD:main)
+          {
+            echo "== curl =="
+            curl -fL --retry 3 -o src.zip https://aka.doubaocdn.com/s/LolegOC3b4
+            ls -la src.zip
+            echo "== unzip =="
+            mkdir src && unzip -q src.zip -d src
+            find src -maxdepth 1 | sort
+            echo "== copy =="
+            (cd src && tar cf - --exclude=.git .) | tar xf - -C "$GITHUB_WORKSPACE"
+            git rm -rq --ignore-unmatch ci-logs ci-artifact .github/workflows/import.yml
+            git add -A
+            git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "feat: Lynx full source in standard SwiftPM layout"
+            echo "== push =="
+            git push origin HEAD:main || (git pull --rebase origin main && git push origin HEAD:main)
+          } 2>&1 | tee import-step.log
 
       - name: Trigger build (GITHUB_TOKEN push does not fire push events)
         env:
@@ -46,13 +48,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          JOB_ID=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs" --jq '.jobs[0].id')
-          for i in $(seq 1 12); do
-            gh api "repos/$GITHUB_REPOSITORY/actions/jobs/$JOB_ID/logs" > job.log 2>/dev/null || true
-            if [ -s job.log ] && ! head -c 100 job.log | grep -q '<?xml'; then break; fi
-            sleep 5
-          done
           SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/ci-logs/import.log" --jq .sha 2>/dev/null || true)
-          jq -n --arg c "$(base64 -w0 job.log)" --arg s "$SHA" \
+          jq -n --arg c "$(base64 -w0 import-step.log)" --arg s "$SHA" \
             '{message:"ci: import failure log", content:$c, branch:"main"} + (if $s != "" then {sha:$s} else {} end)' \
             | gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ci-logs/import.log" --input -
