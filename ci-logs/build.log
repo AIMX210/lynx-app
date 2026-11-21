@@ -2,28 +2,29 @@
 ==> swift build -c release
 Fetching https://github.com/migueldeicaza/SwiftTerm.git
 [1/20862] Fetching swiftterm
-Fetched https://github.com/migueldeicaza/SwiftTerm.git from cache (3.66s)
+Fetched https://github.com/migueldeicaza/SwiftTerm.git from cache (4.51s)
 Fetching https://github.com/swiftlang/swift-subprocess
 [1/5115] Fetching swift-subprocess
-Fetched https://github.com/swiftlang/swift-subprocess from cache (0.75s)
-Fetching https://github.com/apple/swift-system
+Fetched https://github.com/swiftlang/swift-subprocess from cache (1.20s)
 Fetching https://github.com/apple/swift-argument-parser
+Fetching https://github.com/apple/swift-system
 [1/7619] Fetching swift-system
-[2/27061] Fetching swift-system, swift-argument-parser
-Fetched https://github.com/apple/swift-argument-parser from cache (1.39s)
-Fetched https://github.com/apple/swift-system from cache (1.39s)
+[459/27061] Fetching swift-system, swift-argument-parser
+Fetched https://github.com/apple/swift-system from cache (1.13s)
+[2917/19442] Fetching swift-argument-parser
+Fetched https://github.com/apple/swift-argument-parser from cache (1.40s)
 Computing version for https://github.com/apple/swift-system
-Computed https://github.com/apple/swift-system at 1.9.0 (1.87s)
+Computed https://github.com/apple/swift-system at 1.9.0 (1.73s)
 Computing version for https://github.com/apple/swift-argument-parser
-Computed https://github.com/apple/swift-argument-parser at 1.8.2 (0.43s)
-Creating working copy for https://github.com/apple/swift-system
-Working copy of https://github.com/apple/swift-system resolved at 1.9.0
+Computed https://github.com/apple/swift-argument-parser at 1.8.2 (0.25s)
 Creating working copy for https://github.com/migueldeicaza/SwiftTerm.git
 Working copy of https://github.com/migueldeicaza/SwiftTerm.git resolved at 8840e3596739adfe9599c0e7fff89f4fa88bedcf
-Creating working copy for https://github.com/swiftlang/swift-subprocess
-Working copy of https://github.com/swiftlang/swift-subprocess resolved at 426790f3f24afa60b418450da0afaa20a8b3bdd4
+Creating working copy for https://github.com/apple/swift-system
+Working copy of https://github.com/apple/swift-system resolved at 1.9.0
 Creating working copy for https://github.com/apple/swift-argument-parser
 Working copy of https://github.com/apple/swift-argument-parser resolved at 1.8.2
+Creating working copy for https://github.com/swiftlang/swift-subprocess
+Working copy of https://github.com/swiftlang/swift-subprocess resolved at 426790f3f24afa60b418450da0afaa20a8b3bdd4
 [1/1] Compiling plugin GenerateManual
 [2/2] Compiling plugin GenerateDoccReference
 Building for production...
