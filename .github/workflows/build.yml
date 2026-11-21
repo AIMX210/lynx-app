@@ -1,0 +1,73 @@
+name: Build Lynx.app
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['ci-logs/**', 'README.md']
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "Lynx 源码包 zip URL（留空用默认）"
+        required: false
+        default: "https://aka.doubaocdn.com/s/0d6jGhcrYC"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch source package
+        run: |
+          URL="${{ inputs.source_url || 'https://aka.doubaocdn.com/s/0d6jGhcrYC' }}"
+          echo "source: $URL"
+          curl -fL --retry 3 -o Lynx.zip "$URL"
+          unzip -q Lynx.zip
+
+      - name: Select Xcode
+        run: |
+          XCODE=$(ls -d /Applications/Xcode*.app | sort -V | tail -1)
+          echo "using $XCODE"
+          sudo xcode-select -s "$XCODE/Contents/Developer"
+          swift --version
+
+      - name: Build Lynx.app
+        run: cd Lynx && bash scripts/build_app.sh release 2>&1 | tee ../build.log
+
+      - name: Unit tests
+        run: cd Lynx && swift test 2>&1 | tee ../test.log | tail -4
+
+      - name: Package artifact
+        run: cd Lynx && ditto -c -k --keepParent build/Lynx.app ../Lynx-app.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Lynx-app
+          path: Lynx-app.zip
+          retention-days: 30
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "build-${{ github.run_number }}" Lynx-app.zip \
+            --title "Lynx.app build ${{ github.run_number }}" \
+            --notes "arm64, macOS 14+; ad-hoc signed. Gatekeeper: xattr -dr com.apple.quarantine Lynx.app"
+
+      - name: Upload failure logs
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for f in build.log test.log; do
+            [ -f "$f" ] || continue
+            SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/ci-logs/$f" --jq .sha 2>/dev/null || true)
+            jq -n --arg c "$(base64 -i "$f")" --arg s "$SHA" \
+              '{message:"ci: failure log", content:$c, branch:"main"} + (if $s != "" then {sha:$s} else {} end)' \
+              | gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ci-logs/$f" --input -
+          done
