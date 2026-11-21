@@ -1,0 +1,4 @@
+error: 未找到 libSwiftUIMacros.dylib（SwiftUI 宏插件）。
+       Command Line Tools 不含该插件，需安装完整 Xcode 后执行：
+       sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+       然后 rm -rf .build 并重跑本脚本。
