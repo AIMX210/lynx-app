@@ -1,0 +1,84 @@
+{
+  "run": "4",
+  "runs": [
+    {
+      "conclusion": null,
+      "n": 4,
+      "sha": "f1309f90",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "failure",
+      "n": 3,
+      "sha": "e13b7817",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "n": 2,
+      "sha": "ec79ec9e",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "n": 1,
+      "sha": "b13ad82d",
+      "status": "completed"
+    }
+  ],
+  "steps": [
+    {
+      "conclusion": "success",
+      "name": "Set up job"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4"
+    },
+    {
+      "conclusion": "success",
+      "name": "Fetch source package"
+    },
+    {
+      "conclusion": "success",
+      "name": "Select Xcode"
+    },
+    {
+      "conclusion": "failure",
+      "name": "Build Lynx.app"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Unit tests"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Package artifact"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Upload artifact"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Publish release"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Publish raw artifact"
+    },
+    {
+      "conclusion": "success",
+      "name": "Upload failure logs"
+    },
+    {
+      "conclusion": null,
+      "name": "Status report"
+    },
+    {
+      "conclusion": null,
+      "name": "Post Run actions/checkout@v4"
+    }
+  ],
+  "releases": []
+}
