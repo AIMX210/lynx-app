@@ -1,5 +1,5 @@
 {
-  "run": "8",
+  "run": "7",
   "runs": [
     {
       "conclusion": null,
@@ -8,10 +8,10 @@
       "status": "in_progress"
     },
     {
-      "conclusion": null,
+      "conclusion": "failure",
       "n": 8,
       "sha": "13f78923",
-      "status": "in_progress"
+      "status": "completed"
     },
     {
       "conclusion": null,
