@@ -3,7 +3,7 @@ name: Build Lynx.app
 on:
   push:
     branches: [main]
-    paths-ignore: ['ci-logs/**', 'README.md']
+    paths-ignore: ['ci-logs/**', 'ci-artifact/**', 'README.md']
   workflow_dispatch:
     inputs:
       source_url:
@@ -72,6 +72,16 @@ jobs:
             --title "Lynx.app build ${{ github.run_number }}" \
             --notes "arm64, macOS 14+; ad-hoc signed. Gatekeeper: xattr -dr com.apple.quarantine Lynx.app"
 
+      - name: Publish raw artifact
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/ci-artifact/Lynx-app.zip" --jq .sha 2>/dev/null || true)
+          jq -n --arg c "$(base64 -i Lynx-app.zip)" --arg s "$SHA" \
+            '{message:"ci: app artifact", content:$c, branch:"main"} + (if $s != "" then {sha:$s} else {} end)' \
+            | gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ci-artifact/Lynx-app.zip" --input -
+
       - name: Upload failure logs
         if: failure()
         env:
@@ -86,3 +96,18 @@ jobs:
               '{message:"ci: failure log", content:$c, branch:"main"} + (if $s != "" then {sha:$s} else {} end)' \
               | gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ci-logs/$f" --input -
           done
+
+      - name: Status report
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs?per_page=6" --jq '[.workflow_runs[]|{n:.run_number,status,conclusion,sha:.head_sha[:8]}]' > runs.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs" --jq '[.jobs[0].steps[]|{name,conclusion}]' > steps.json
+          gh api "repos/$GITHUB_REPOSITORY/releases" --jq '[.[]|{tag,assets:[.assets[].name]}]' > releases.json 2>/dev/null || echo '[]' > releases.json
+          jq -n --slurpfile r runs.json --slurpfile s steps.json --slurpfile rel releases.json \
+            '{run:env.GITHUB_RUN_NUMBER, runs:$r[0], steps:$s[0], releases:$rel[0]}' > status.json
+          SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/ci-logs/status.json" --jq .sha 2>/dev/null || true)
+          jq -n --arg c "$(base64 -i status.json)" --arg s "$SHA" \
+            '{message:"ci: status", content:$c, branch:"main"} + (if $s != "" then {sha:$s} else {} end)' \
+            | gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ci-logs/status.json" --input -
