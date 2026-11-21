@@ -23,7 +23,7 @@ jobs:
       - name: Import full source tree in one commit
         run: |
           echo "== curl =="
-          curl -fL --retry 3 -o src.zip https://aka.doubaocdn.com/s/V8vcqUsuPV
+          curl -fL --retry 3 -o src.zip https://aka.doubaocdn.com/s/LolegOC3b4
           ls -la src.zip
           echo "== unzip =="
           mkdir src && unzip -q src.zip -d src
