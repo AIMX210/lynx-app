@@ -1,113 +1,13 @@
 name: Build Lynx.app
 
 on:
-  push:
-    branches: [main]
-    paths-ignore: ['ci-logs/**', 'ci-artifact/**', 'README.md']
   workflow_dispatch:
-    inputs:
-      source_url:
-        description: "Lynx 源码包 zip URL（留空用默认）"
-        required: false
-        default: "https://aka.doubaocdn.com/s/j2XVcl3ceH"
 
 permissions:
   contents: write
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   build:
     runs-on: macos-15
-    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Fetch source package
-        run: |
-          URL="${{ inputs.source_url || 'https://aka.doubaocdn.com/s/j2XVcl3ceH' }}"
-          echo "source: $URL"
-          curl -fL --retry 3 -o Lynx.zip "$URL"
-          unzip -q Lynx.zip
-
-      - name: Select Xcode
-        run: |
-          XCODE=$(ls -d /Applications/Xcode*.app | sort -V | tail -1)
-          echo "using $XCODE"
-          sudo xcode-select -s "$XCODE/Contents/Developer"
-          xcode-select -p
-          swift --version
-          find "$XCODE/Contents/Developer" -maxdepth 9 -name libSwiftUIMacros.dylib 2>/dev/null | head -3
-
-      - name: Build Lynx.app
-        run: cd Lynx && bash scripts/build_app.sh release 2>&1 | tee ../build.log
-
-      - name: Unit tests
-        run: cd Lynx && swift test 2>&1 | tee ../test.log | tail -4
-
-      - name: Package artifact
-        run: |
-          ls -la Lynx/build
-          cd Lynx
-          if ! ditto -c -k --keepParent build/Lynx.app ../Lynx-app.zip 2>&1 | tee ../pack.log; then
-            echo "ditto failed, fallback to zip" | tee -a ../pack.log
-            (cd build && zip -qry ../../Lynx-app.zip Lynx.app) 2>&1 | tee -a ../pack.log
-          fi
-          ls -la ../Lynx-app.zip
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Lynx-app
-          path: Lynx-app.zip
-          retention-days: 30
-
-      - name: Publish release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create "build-${{ github.run_number }}" Lynx-app.zip \
-            --title "Lynx.app build ${{ github.run_number }}" \
-            --notes "arm64, macOS 14+; ad-hoc signed. Gatekeeper: xattr -dr com.apple.quarantine Lynx.app"
-
-      - name: Publish raw artifact
-        if: success()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/ci-artifact/Lynx-app.zip" --jq .sha 2>/dev/null || true)
-          jq -n --arg c "$(base64 -i Lynx-app.zip)" --arg s "$SHA" \
-            '{message:"ci: app artifact", content:$c, branch:"main"} + (if $s != "" then {sha:$s} else {} end)' \
-            | gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ci-artifact/Lynx-app.zip" --input -
-
-      - name: Upload failure logs
-        if: failure()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          JOB_ID=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs" --jq '.jobs[0].id')
-          gh api "repos/$GITHUB_REPOSITORY/actions/jobs/$JOB_ID/logs" > job.log 2>/dev/null || true
-          for f in build.log test.log pack.log job.log; do
-            [ -f "$f" ] || continue
-            SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/ci-logs/$f" --jq .sha 2>/dev/null || true)
-            jq -n --arg c "$(base64 -i "$f")" --arg s "$SHA" \
-              '{message:"ci: failure log", content:$c, branch:"main"} + (if $s != "" then {sha:$s} else {} end)' \
-              | gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ci-logs/$f" --input -
-          done
-
-      - name: Status report
-        if: always()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api "repos/$GITHUB_REPOSITORY/actions/runs?per_page=6" --jq '[.workflow_runs[]|{n:.run_number,status,conclusion,sha:.head_sha[:8]}]' > runs.json
-          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs" --jq '[.jobs[0].steps[]|{name,conclusion}]' > steps.json
-          gh api "repos/$GITHUB_REPOSITORY/releases" --jq '[.[]|{tag,assets:[.assets[].name]}]' > releases.json 2>/dev/null || echo '[]' > releases.json
-          jq -n --slurpfile r runs.json --slurpfile s steps.json --slurpfile rel releases.json \
-            '{run:env.GITHUB_RUN_NUMBER, runs:$r[0], steps:$s[0], releases:$rel[0]}' > status.json
-          SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/ci-logs/status.json" --jq .sha 2>/dev/null || true)
-          jq -n --arg c "$(base64 -i status.json)" --arg s "$SHA" \
-            '{message:"ci: status", content:$c, branch:"main"} + (if $s != "" then {sha:$s} else {} end)' \
-            | gh api -X PUT "repos/$GITHUB_REPOSITORY/contents/ci-logs/status.json" --input -
+      - run: echo "frozen: final workflow lands after source push"
