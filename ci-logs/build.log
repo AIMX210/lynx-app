@@ -5,25 +5,25 @@ Fetching https://github.com/migueldeicaza/SwiftTerm.git
 Fetched https://github.com/migueldeicaza/SwiftTerm.git from cache (3.90s)
 Fetching https://github.com/swiftlang/swift-subprocess
 [1/5115] Fetching swift-subprocess
-Fetched https://github.com/swiftlang/swift-subprocess from cache (0.78s)
+Fetched https://github.com/swiftlang/swift-subprocess from cache (0.85s)
 Fetching https://github.com/apple/swift-system
 Fetching https://github.com/apple/swift-argument-parser
 [1/19442] Fetching swift-argument-parser
 [196/27061] Fetching swift-argument-parser, swift-system
-Fetched https://github.com/apple/swift-argument-parser from cache (0.99s)
-Fetched https://github.com/apple/swift-system from cache (1.00s)
+Fetched https://github.com/apple/swift-system from cache (1.32s)
+Fetched https://github.com/apple/swift-argument-parser from cache (1.32s)
 Computing version for https://github.com/apple/swift-system
-Computed https://github.com/apple/swift-system at 1.9.0 (1.46s)
+Computed https://github.com/apple/swift-system at 1.9.0 (1.87s)
 Computing version for https://github.com/apple/swift-argument-parser
-Computed https://github.com/apple/swift-argument-parser at 1.8.2 (0.37s)
-Creating working copy for https://github.com/apple/swift-argument-parser
-Working copy of https://github.com/apple/swift-argument-parser resolved at 1.8.2
+Computed https://github.com/apple/swift-argument-parser at 1.8.2 (0.32s)
 Creating working copy for https://github.com/migueldeicaza/SwiftTerm.git
 Working copy of https://github.com/migueldeicaza/SwiftTerm.git resolved at 8840e3596739adfe9599c0e7fff89f4fa88bedcf
 Creating working copy for https://github.com/swiftlang/swift-subprocess
 Working copy of https://github.com/swiftlang/swift-subprocess resolved at 426790f3f24afa60b418450da0afaa20a8b3bdd4
 Creating working copy for https://github.com/apple/swift-system
 Working copy of https://github.com/apple/swift-system resolved at 1.9.0
+Creating working copy for https://github.com/apple/swift-argument-parser
+Working copy of https://github.com/apple/swift-argument-parser resolved at 1.8.2
 [1/1] Compiling plugin GenerateManual
 [2/2] Compiling plugin GenerateDoccReference
 Building for production...
