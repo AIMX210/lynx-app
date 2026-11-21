@@ -1,0 +1,30 @@
+name: Import source
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/import.yml']
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Import full source tree in one commit
+        run: |
+          curl -fL --retry 3 -o src.zip https://aka.doubaocdn.com/s/V8vcqUsuPV
+          mkdir src && unzip -q src.zip -d src
+          (cd src && tar cf - --exclude=.git .) | tar xf - -C "$GITHUB_WORKSPACE"
+          git rm -rq --ignore-unmatch ci-logs ci-artifact .github/workflows/import.yml
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "feat: Lynx full source in standard SwiftPM layout"
+          git push origin HEAD:main
