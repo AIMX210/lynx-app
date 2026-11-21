@@ -42,7 +42,14 @@ jobs:
         run: cd Lynx && swift test 2>&1 | tee ../test.log | tail -4
 
       - name: Package artifact
-        run: cd Lynx && ditto -c -k --keepParent build/Lynx.app ../Lynx-app.zip
+        run: |
+          ls -la Lynx/build
+          cd Lynx
+          if ! ditto -c -k --keepParent build/Lynx.app ../Lynx-app.zip 2>&1 | tee ../pack.log; then
+            echo "ditto failed, fallback to zip" | tee -a ../pack.log
+            (cd build && zip -qry ../../Lynx-app.zip Lynx.app) 2>&1 | tee -a ../pack.log
+          fi
+          ls -la ../Lynx-app.zip
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -64,7 +71,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for f in build.log test.log; do
+          JOB_ID=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs" --jq '.jobs[0].id')
+          gh api "repos/$GITHUB_REPOSITORY/actions/jobs/$JOB_ID/logs" > job.log 2>/dev/null || true
+          for f in build.log test.log pack.log job.log; do
             [ -f "$f" ] || continue
             SHA=$(gh api "repos/$GITHUB_REPOSITORY/contents/ci-logs/$f" --jq .sha 2>/dev/null || true)
             jq -n --arg c "$(base64 -i "$f")" --arg s "$SHA" \
